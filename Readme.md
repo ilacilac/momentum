@@ -25,24 +25,24 @@
 **1) 사용 기술 스택**
 
 - HTML
-- **SCSS**
+- SCSS
 - JavaScript
 - React 기본
 - Git flow([https://github.com/kr-ub/momentum](https://github.com/kr-ub/momentum))
-- axios
+- localStorage
 
 **2) 사용 라이브러리 및 API**
 
+- axios
 - react-icons
 - classnames
 - JSON Server
-- localStorage
 - Open Weather API
 - unsplash API(랜덤 배경화면)
 
 **3) 폴더 구조**
 
-!["./ScaffoldDirectory.PNG"]("./ScaffoldDirectory.PNG")
+![https://github.com/kr-ub/momentum/blob/master/ScaffoldDirectory.PNG](https://github.com/kr-ub/momentum/blob/master/ScaffoldDirectory.PNG)
 
 ## **3. Flow Chart**
 
