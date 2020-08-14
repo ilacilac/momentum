@@ -12,7 +12,7 @@ export default function Setting() {
   let settingList = [
     {id: 1, text: "Weather", check: true},
     {id: 2, text: "Todos", check: true},
-    {id: 3, text: "Clock", check: true},
+    { id: 3, text: "Clock", check: true },
   ];
 
   const LS_SETTING = localStorage.getItem("setting");
@@ -43,9 +43,7 @@ export default function Setting() {
               document.querySelector(".mainTodoBtn").classList.add("hidden");
             break;
           case "Clock":
-                    document
-                      .querySelector(".clock")
-                      .classList.add("hidden");
+              document.querySelector(".clock").classList.add("hidden");
             break
           default:
             console.log("초기화 실패");

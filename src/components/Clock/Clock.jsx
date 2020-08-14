@@ -1,52 +1,65 @@
-import React, {useState, useEffect, useCallback} from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import "./Clock.scss";
+
 export default function ClockContainer() {
   const [date, setDate] = useState(new Date());
   const [greeting, setGreeting] = useState("");
   const hour = date.getHours();
   const min = date.getMinutes();
+
   useEffect(() => {
+    tick();
     const timerID = setInterval(() => tick(), 1000);
+
     return function cleanup() {
       clearInterval(timerID);
     };
-  });
+  }, []);
+
   function tick() {
     setDate(new Date());
   }
+
   useEffect(() => {
+    greet();
     const greetID = setInterval(() => greet(), 1000);
     return function cleanup() {
       clearInterval(greetID);
     };
   });
+
   function greet() {
     if (hour >= 5 && hour < 12) {
       setGreeting("Good morning");
-    } else if (hour >= 12 && hour < 17) {
+    } else if (hour >= 12 && hour < 18) {
       setGreeting("Good afternoon");
     } else {
       setGreeting("Good evening");
     }
   }
+
   return (
     <div>
       <Clock hour={hour} min={min} greeting={greeting}></Clock>
     </div>
   );
 }
-export function Clock({hour, min, greeting}) {
+
+export function Clock({ hour, min, greeting }) {
   const [inputname, setInputName] = useState({
     name: "",
     inputBoxisHidden: false,
   });
-  const {name, inputBoxisHidden} = inputname;
+  const { name, inputBoxisHidden } = inputname;
+
   const [userNameisHidden, setUserNameisHidden] = useState(true);
+
   // useEffect(() => {
   //   setName(name ? localStorage.getItem("name") : "");
   //   // setHidden(!name ? true : false);
   // }, [name]);
+
   const onInputName = (e) => {
     setInputName({
       ...inputname,
@@ -64,20 +77,22 @@ export function Clock({hour, min, greeting}) {
   };
   const onChangeName = (e) => {
     setInputName({
-      name: e.target.value,
+      ...inputname,
       inputBoxisHidden: false,
     });
     setUserNameisHidden(true);
   };
+
   useEffect(() => {
     const getName = localStorage.getItem("name");
     if (getName !== null) {
       // setInputName({ name: getName, inputBoxisHidden: true });
-      setInputName({name: getName, inputBoxisHidden: true});
+      setInputName({ name: getName, inputBoxisHidden: true });
       setUserNameisHidden(false);
     }
     console.log(name);
-  }, [name]);
+  }, [name]); 
+
   return (
     <div className="clockWrapper">
       <div className="clock">
@@ -87,16 +102,16 @@ export function Clock({hour, min, greeting}) {
         <span>{greeting}, </span>
         <input
           type="text"
-          className={classNames("userName", {inputBoxisHidden})}
+          className={classNames("userName", { inputBoxisHidden })}
           value={name}
           onChange={onInputName}
           onKeyDown={onSaveName}
           size="5"
-          maxlength="22"
+          maxLength="22"
         />
         <span
           className="savedName"
-          style={{display: userNameisHidden ? "none" : "inline-block"}}
+          style={{ display: userNameisHidden ? "none" : "inline-block" }}
           onDoubleClick={onChangeName}
         >
           {name}
