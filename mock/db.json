@@ -9,7 +9,7 @@
     {
       "id": 2,
       "text": "test",
-      "checked": false,
+      "checked": true,
       "double": false
     },
     {
@@ -19,9 +19,9 @@
       "double": false
     },
     {
-      "id": 5,
-      "text": "estest",
-      "checked": true,
+      "id": 6,
+      "text": "TEST",
+      "checked": false,
       "double": false
     }
   ]

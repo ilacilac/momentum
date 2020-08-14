@@ -42,7 +42,7 @@
 
 **3) 폴더 구조**
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1fe6ed4a-1226-44c4-9d42-42b05b246dab/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1fe6ed4a-1226-44c4-9d42-42b05b246dab/Untitled.png)
+!["./ScaffoldDirectory.PNG"]("./ScaffoldDirectory.PNG")
 
 ## **3. Flow Chart**
 
