@@ -9,7 +9,6 @@
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.8.0",
-    "json-server": "^0.16.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -24,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "mockserver": "json-server --watch --delay 500 --port 4000 mock/db.json"
+    "mockserver": "json-server --watch mock/db.json --port 4000"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "json-server": "^0.16.3"
   }
 }
