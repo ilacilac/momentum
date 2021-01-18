@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 
 import "../components/Background/Background.scss";
@@ -16,7 +15,6 @@ export default function Home() {
   const [showTodos, setShowTodos] = useState(false);
   const todosBtnClick = () => {
     setShowTodos(!showTodos);
-    console.log(showTodos);
   };
   return (
     <div className="Container">

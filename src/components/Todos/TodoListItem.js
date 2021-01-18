@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from 'react';
-import { MdCheckBoxOutlineBlank, MdCheckBox, MdDelete } from 'react-icons/md';
-import cn from 'classnames';
-import './TodoListItem.scss';
+import React, { useState, useCallback } from "react";
+import { MdCheckBoxOutlineBlank, MdCheckBox, MdDelete } from "react-icons/md";
+import cn from "classnames";
+import "./TodoListItem.scss";
 
 const TodoListItem = ({
   todo,
@@ -25,7 +25,7 @@ const TodoListItem = ({
   return (
     <div className="TodoListItem">
       <div
-        className={cn('checkbox', { checked })}
+        className={cn("checkbox", { checked })}
 
         // onToggle={onToggle}
       >

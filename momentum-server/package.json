@@ -1,7 +1,6 @@
 {
-  "name": "momentum",
+  "name": "momentum-server",
   "version": "0.1.0",
-  "main": "server.js",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -27,18 +26,16 @@
     "unsplash-js": "^6.0.0"
   },
   "scripts": {
-    "start": "npm-run-all --parallel start:**",
-    "start:client": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "mockserver": "json-server --watch mock/db.json --port 4000",
-    "server": "cd momentum-server && nodemon server.js",
-    "front" : "npm start",
-    "dev" : "concurrently \"npm run server\" \"npm run front\""
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -51,10 +48,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "json-server": "^0.16.3",
-    "npm-run-all": "^4.1.5"
   },
   "proxy":"http://localhost:5000"
 }

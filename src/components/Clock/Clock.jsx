@@ -90,8 +90,7 @@ export function Clock({ hour, min, greeting }) {
       setInputName({ name: getName, inputBoxisHidden: true });
       setUserNameisHidden(false);
     }
-    console.log(name);
-  }, [name]); 
+  }, [name]);
 
   return (
     <div className="clockWrapper">

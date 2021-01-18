@@ -1,30 +1,25 @@
-import React, {useState, useCallback, useEffect, useRef} from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import TodoTemplate from "./components/Todos/TodoTemplate";
 import TodoInsert from "./components/Todos/TodoInsert";
 import TodoList from "./components/Todos/TodoList";
 import axios from "axios";
 // import { getTodos } from '../api/posts';
 const TodosApp = () => {
-  const [loading, setLoading] = useState(false);
   const [todos, setTodos] = useState([]);
-  console.log(todos.length);
-  // console.log(todosLength);
   useEffect(() => {
     let response;
     async function getTodos() {
       response = await axios
-        .get("http://localhost:4000/todos")
+        .get("/todos")
         .then((res) => res.data)
         .catch((err) => console.error(err));
       setTodos(response);
     }
     getTodos();
   }, []);
-  // const nextId = useRef(todos.id);
   let generateId = todos.length
     ? Math.max(...todos.map((todo) => todo.id)) + 1
     : 1;
-  // *해결해야됨
   const nextId = useRef(generateId);
   const onInsert = useCallback(
     (text) => {
@@ -34,51 +29,36 @@ const TodosApp = () => {
         checked: false,
         double: false,
       };
-      axios.post("http://localhost:4000/todos", todo);
-      setTodos(todos.concat(todo));
-      // generateId += 1;
-      // console.log(test);
-      nextId.current += 1;
-      // getTodos();
+      axios
+        .post("/todos", todo) //
+        .then((_todos) => setTodos(_todos.data))
+        .then((nextId.current += 1));
     },
-    [todos, generateId]
+    [generateId]
   );
-  const onRemove = useCallback(
-    (id) => {
-      axios.delete(`http://localhost:4000/todos/${id}`);
-      setTodos(todos.filter((todo) => todo.id !== id));
-    },
-    [todos]
-  );
-  const onToggle = useCallback(
-    (id) => {
-      const _todos = todos.map((todo) =>
-        todo.id === id ? {...todo, checked: !todo.checked} : todo
-      );
-      let patchTodo = _todos.filter((todo) => {
-        return todo.id === id;
-      });
-      // *해결해야됨
-      patchTodo = patchTodo[0];
-      axios.patch(`http://localhost:4000/todos/${id}`, {
-        ...patchTodo,
-      });
-      setTodos(_todos);
-    },
-    [todos]
-  );
-  // 시간될 경우 수정작업
+  const onRemove = useCallback((id) => {
+    axios
+      .delete(`/todos/${id}`) //
+      .then((_todos) => setTodos(_todos.data))
+      .catch((err) => console.error(err));
+  }, []);
+  const onToggle = (id) => {
+    axios
+      .patch(`/todos/${id}`, { id }) //
+      .then((_todos) => setTodos(_todos.data))
+      .catch((err) => console.error(err));
+  };
+
+  //  수정작업
   const onDoubleClick = useCallback(
     (id, double) => {
       console.log("double click on");
       const _todos = todos.map((todo) =>
-        todo.id === id ? {...todo, double: !todo.double} : todo
+        todo.id === id ? { ...todo, double: !todo.double } : todo
       );
-      console.log(_todos);
       let patchTodo = _todos.filter((todo) => {
         return todo.id === id;
       });
-      console.log(patchTodo);
       // *해결해야됨
       // patchTodo = patchTodo[0];
       // axios.patch(`http://localhost:4000/todos/${id}`, {
@@ -94,7 +74,6 @@ const TodosApp = () => {
     switch (onName) {
       // 전체 todos
       case "inbox":
-        console.log(todos);
         // setTodos(todos);
         break;
       // 완료된 todos
@@ -106,10 +85,6 @@ const TodosApp = () => {
       default:
     }
   };
-  // const [test, setTeest] = useState(todos);
-  // console.log(test);
-  // console.log(todos);
-  // console.log("todosLength", todosLength);
   return (
     <>
       <button className="mainTodoBtn">todos</button>
