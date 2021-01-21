@@ -3,14 +3,15 @@ import TodoTemplate from "./components/Todos/TodoTemplate";
 import TodoInsert from "./components/Todos/TodoInsert";
 import TodoList from "./components/Todos/TodoList";
 import axios from "axios";
-// import { getTodos } from '../api/posts';
+
+const serverUrl = "https://ilac-momentum.herokuapp.com/todos";
 const TodosApp = () => {
   const [todos, setTodos] = useState([]);
   useEffect(() => {
     let response;
     async function getTodos() {
       response = await axios
-        .get("/todos")
+        .get(serverUrl)
         .then((res) => res.data)
         .catch((err) => console.error(err));
       setTodos(response);
@@ -30,7 +31,7 @@ const TodosApp = () => {
         double: false,
       };
       axios
-        .post("/todos", todo) //
+        .post(serverUrl, todo) //
         .then((_todos) => setTodos(_todos.data))
         .then((nextId.current += 1));
     },
@@ -38,13 +39,13 @@ const TodosApp = () => {
   );
   const onRemove = useCallback((id) => {
     axios
-      .delete(`/todos/${id}`) //
+      .delete(`${serverUrl}/${id}`) //
       .then((_todos) => setTodos(_todos.data))
       .catch((err) => console.error(err));
   }, []);
   const onToggle = (id) => {
     axios
-      .patch(`/todos/${id}`, { id }) //
+      .patch(`${serverUrl}/${id}`, { id }) //
       .then((_todos) => setTodos(_todos.data))
       .catch((err) => console.error(err));
   };
